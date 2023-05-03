@@ -1,4 +1,6 @@
 from node import Node
+import unittest
+from random import randint
 
 
 class Tree:
@@ -62,27 +64,42 @@ class Tree:
             return self._find(data, node.right)
 
     def deleteTree(self):
-        # TODO 1
+        """Method for deleting a tree"""
         self.root = None
 
     def printTree(self):
-        # TODO 1
+        """Method that prints the tree contents inorder"""
         if self.root is not None:
             self._printInorderTree(self.root)
 
     def _printInorderTree(self, node):
-        # TODO 1
         if node is not None:
             self._printInorderTree(node.left)
             print(str(node.data) + ' ')
             self._printInorderTree(node.right)
 
     def _printPreorderTree(self, node):
-        # TODO 2
-        pass
+        if node is not None:
+            print(str(node.data) + ' ')
+            self._printPreorderTree(node.left)
+            self._printPostorderTree(node.right)
 
     def _printPostorderTree(self, node):
-        # TODO 2
-        pass
+        if node is not None:
+            self._printPostorderTree(node.left)
+            self._printPostorderTree(node.right)
+            print(str(node.data) + ' ')
 
 
+class TestTree(unittest.TestCase):
+    def setUp(self) -> None:
+        self.copac = Tree()
+        for _ in range(12):
+            self.copac.add(randint(0, 10))
+        self.copac.add(15)
+
+    def testFindValid(self):
+        self.assertIsNotNone(self.copac.find(15))
+
+    def testFindInvalid(self):
+        self.assertIsNone(self.copac.find(-1))
