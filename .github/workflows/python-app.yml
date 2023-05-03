@@ -37,3 +37,11 @@ jobs:
     - name: Test with unittest
       run: |
         python -m unittest tree.py
+    - name: Send discord notification
+      if: always
+      uses: sebastianpopp/discord-action@v2.0
+      with:
+        # Discord webhook URL
+        webhook: https://discord.com/api/webhooks/1103331023766433954/ghELbzNK1DUjHbQ2KOCpXj5XsMP0366Jv0EVf8BkoYH59oT59tdTbSa9hVbzLfOdYNEs
+        # Message to be sent
+        message: "I require cocaine"
