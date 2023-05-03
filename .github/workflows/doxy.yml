@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Do a doxygen
-        run:
+        run: |
           sudo apt install doxygen
           doxygen -g
           doxygen
